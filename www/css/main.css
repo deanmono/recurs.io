@@ -16,6 +16,7 @@ input,
 select,
 textarea {
     color: #222;
+    width: auto;
 }
 
 body {
@@ -26,7 +27,8 @@ body {
     height: 100%;
     background-color: #434343;
     background-image:linear-gradient(#434343, #282828);
-    overflow: hidden;
+    overflow: visible;
+    width: auto;
 }
 
 /*
@@ -113,23 +115,27 @@ textarea {
 
 /* PIANO ROLL */
 #pianoRoll {
-    position: absolute;
+    position: relative;
     float: left;
-    width: 100%;
+    min-width: 100%;
+    width: auto;
     height: 100%;
-    overflow: scroll;
+    /*margin-top: 34px;*/
+    overflow: hidden;
 }
 .piano {
+    overflow: visible;
+    float: left;
     display: block;
-    width:107px;
+    width: 107px;
     padding: 0px;
-    border-right:1px solid #101010;
-    position: absolute;
-    z-index: 2;
+    border-right: 1px solid #101010;
+    position: relative;
+    z-index: 3;
 }
 .piano-key {
     border: 0px;
-    display:block;
+    display: table;
     float:left;
     outline: none;
     padding: 4px;
@@ -152,23 +158,42 @@ textarea {
     color: black;
 }
 .roll {
-    background-size: 29px 29px;
     /*
+    background-size: 29px 29px;
     background-image:repeating-linear-gradient(0deg, #222222, #222222 1px, transparent 1px, transparent 50px),repeating-linear-gradient(-90deg, #222222, #222222 1px, transparent 1px, transparent 50px);
     */
+    box-sizing: border-box;
+    right: 0;
+    left: 107px;
     min-height: 100%;
-    width:100%;
-    opacity:0.34;
-    padding-left: 107px;
     position: absolute;
+    z-index: 1;
+    overflow-x: scroll;
+}
+.rows {
+    opacity:0.34;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0);
+    /* width: 3000px; */
+    float: left;
+    min-width: 100%;
+    width: auto;
+    height: 100%;
+    z-index: 2;
+    overflow: visible;
+    white-space: nowrap;
+}
+.columns {
+
 }
 .range {
-    border: 0px;
+    border-bottom: 1px solid #000;
     display:block;
     float:left;
     outline: none;
     height: 29px;
     width: 100%;
+    z-index: 1;
 }
 .range-note {
     display: inline-block;
@@ -182,12 +207,42 @@ textarea {
     background: #292929;
     height: 20px;
 }
-.beat-divider {
+.grid {
+    width: auto;
+    min-width: 100%;
     position: absolute;
-    width: 0px;
     height: 100%;
+    min-height: 100%;
+    overflow: hidden;
+
+}
+.beat-divide {
+
+    /*width: 3000px;*/
+    float: left;
+    min-width: 100%;
+    width: auto;
+    height: 100%;
+    z-index: 2;
+    overflow: visible;
+    white-space: nowrap;
+}
+.beat-divider {
+    display: inline-block;
+    height: 100%;
+    min-height: 100%;
+    z-index: 2;
+    /*width: 10px;*/
     border-right: 1px solid #000;
-    margin-right: 10px;
+    opacity:0.34;
+}
+.play-head {
+    opacity:1;
+    border-right: 1px solid red;
+    min-height: 100%;
+    left: 0;
+    z-index: 1;
+    position: absolute;
 }
 /* CONTROLS */
 
